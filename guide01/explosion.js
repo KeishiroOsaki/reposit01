@@ -1,8 +1,9 @@
 (function() {
   window.onload = function() {
-    var Point, canvas, ctx, dpoints, drawCircle, getRan, i, nPoint, points, update;
+    var Point, acc, canvas, ctx, dpoints, drawCircle, getRan, i, nPoint, points, update;
     canvas = document.getElementById("field");
     ctx = canvas.getContext('2d');
+    acc = 1;
     Point = (function() {
       function Point(x, y, size) {
         this.x = x;
@@ -38,7 +39,7 @@
         _results.push({
           dx: getRan(),
           dy: getRan(),
-          dsize: 0.01
+          dsize: 0.001
         });
       }
       return _results;
@@ -57,8 +58,9 @@
       }
       for (i = _j = 0; 0 <= nPoint ? _j <= nPoint : _j >= nPoint; i = 0 <= nPoint ? ++_j : --_j) {
         d = dpoints[i];
-        points[i].update(d.dx, d.dy, d.dsize);
+        points[i].update(d.dx * acc, d.dy * acc, d.dsize * acc);
       }
+      acc *= 1.08;
       return window.requestAnimationFrame(update);
     };
     return window.requestAnimationFrame(update);
