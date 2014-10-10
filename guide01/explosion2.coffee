@@ -1,7 +1,6 @@
 window.onload = ->
   canvas = document.getElementById "field"
   ctx = canvas.getContext '2d'
-  acc = 1
 
   class Point
     constructor : (x, y, size) ->
@@ -9,16 +8,10 @@ window.onload = ->
       @y = y
       @size = size
 
-    update: (dx, dy, dsize) ->
-      @x += dx
-      @y += dy
-      @size -= dsize
-
-  getRan = () -> (Math.random() - 0.5)*2
-
-  nPoint = 1000
-  points = (new Point(canvas.width/2, canvas.height/2, 5) for i in [0..nPoint])
-  dpoints = ({dx:getRan(), dy:getRan(), dsize:0.001} for i in [0..nPoint])
+  point = new Point(canvas.width/2, canvas.height/2, 20)
+  dx = 3
+  dy = 3
+  disze = 1.04
 
   drawCircle = (pt) ->
     ctx.beginPath()
@@ -27,14 +20,11 @@ window.onload = ->
 
   update = ->
     ctx.clearRect 0, 0, canvas.width, canvas.height
-    drawCircle(i) for i in points
-
-    for i in [0..nPoint]
-      d = dpoints[i]
-      points[i].update(d.dx*acc, d.dy*acc, d.dsize*acc)
-
-    acc *= 1.15
-
+    console.log "update"
+    drawCircle(point)
+    point.x += dx
+    point.y += dy
+    point.size *= disze
     window.requestAnimationFrame update
 
   window.requestAnimationFrame update
