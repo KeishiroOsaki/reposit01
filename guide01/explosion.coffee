@@ -1,7 +1,8 @@
 window.onload = ->
   canvas = document.getElementById "field"
   ctx = canvas.getContext '2d'
-  acc = 1
+
+  acc = 0.5
 
   class Point
     constructor : (x, y, size) ->
@@ -16,8 +17,8 @@ window.onload = ->
 
   getRan = () -> (Math.random() - 0.5)*2
 
-  nPoint = 1000
-  points = (new Point(canvas.width/2, canvas.height/2, 5) for i in [0..nPoint])
+  nPoint = 2000
+  points = (new Point(canvas.width/2, canvas.height/2, 6) for i in [0..nPoint])
   dpoints = ({dx:getRan(), dy:getRan(), dsize:0.001} for i in [0..nPoint])
 
   drawCircle = (pt) ->
@@ -31,7 +32,7 @@ window.onload = ->
 
     for i in [0..nPoint]
       d = dpoints[i]
-      points[i].update(d.dx*acc, d.dy*acc, d.dsize*acc)
+      points[i].update(d.dx*acc, d.dy*acc, d.dsize)
 
     acc *= 1.15
 

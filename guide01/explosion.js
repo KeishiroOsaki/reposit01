@@ -3,7 +3,7 @@
     var Point, acc, canvas, ctx, dpoints, drawCircle, getRan, i, nPoint, points, update;
     canvas = document.getElementById("field");
     ctx = canvas.getContext('2d');
-    acc = 1;
+    acc = 0.5;
     Point = (function() {
       function Point(x, y, size) {
         this.x = x;
@@ -23,12 +23,12 @@
     getRan = function() {
       return (Math.random() - 0.5) * 2;
     };
-    nPoint = 1000;
+    nPoint = 2000;
     points = (function() {
       var _i, _results;
       _results = [];
       for (i = _i = 0; 0 <= nPoint ? _i <= nPoint : _i >= nPoint; i = 0 <= nPoint ? ++_i : --_i) {
-        _results.push(new Point(canvas.width / 2, canvas.height / 2, 5));
+        _results.push(new Point(canvas.width / 2, canvas.height / 2, 6));
       }
       return _results;
     })();
@@ -58,7 +58,7 @@
       }
       for (i = _j = 0; 0 <= nPoint ? _j <= nPoint : _j >= nPoint; i = 0 <= nPoint ? ++_j : --_j) {
         d = dpoints[i];
-        points[i].update(d.dx * acc, d.dy * acc, d.dsize * acc);
+        points[i].update(d.dx * acc, d.dy * acc, d.dsize);
       }
       acc *= 1.15;
       return window.requestAnimationFrame(update);
