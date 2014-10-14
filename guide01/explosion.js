@@ -23,7 +23,7 @@
     getRan = function() {
       return (Math.random() - 0.5) * 2;
     };
-    nPoint = 2000;
+    nPoint = 500;
     points = (function() {
       var _i, _results;
       _results = [];
@@ -58,7 +58,7 @@
       }
       for (i = _j = 0; 0 <= nPoint ? _j <= nPoint : _j >= nPoint; i = 0 <= nPoint ? ++_j : --_j) {
         d = dpoints[i];
-        points[i].update(d.dx * acc, d.dy * acc, d.dsize);
+        points[i].update(d.dx * acc, d.dy * acc, d.dsize * acc);
       }
       acc *= 1.15;
       return window.requestAnimationFrame(update);

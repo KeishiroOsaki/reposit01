@@ -17,7 +17,7 @@ window.onload = ->
 
   getRan = () -> (Math.random() - 0.5)*2
 
-  nPoint = 2000
+  nPoint = 500
   points = (new Point(canvas.width/2, canvas.height/2, 6) for i in [0..nPoint])
   dpoints = ({dx:getRan(), dy:getRan(), dsize:0.001} for i in [0..nPoint])
 
@@ -32,7 +32,7 @@ window.onload = ->
 
     for i in [0..nPoint]
       d = dpoints[i]
-      points[i].update(d.dx*acc, d.dy*acc, d.dsize)
+      points[i].update(d.dx*acc, d.dy*acc, d.dsize*acc)
 
     acc *= 1.15
 
